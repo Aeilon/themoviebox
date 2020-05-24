@@ -1,0 +1,22 @@
+{
+  "Popular": "Popularne",
+  "Upcoming": "Nadchodzące",
+  "Top Rated": "Najwyżej Oceniane",
+  "Genre": "Gatunek",
+  "All": "Wszystkie",
+  "Search": "Wyszukaj...",
+  "Rating":"Ocena na podstawie {vote_count} opinii",
+  "Duration":"Czas Trwania:",
+  "No Results": "Brak Wyników",
+  "Show More": "Pokaż Więcej",
+  "button-show":"Zobacz Więcej",
+  "Budget": "Budżet:",
+  "Popularity": "Popularność:",
+  "Original Language":"Oryginalny Język:",
+  "Original Title":"Oryginalny Tytuł:",
+  "Query": "Fraza...",
+  "Year":"Rok...",
+  "Error":"Coś poszło nie tak!"
+
+
+}

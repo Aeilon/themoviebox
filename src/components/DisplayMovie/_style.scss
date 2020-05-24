@@ -1,0 +1,100 @@
+//! FLEX
+.movie {
+  height: 22.5rem;
+  margin-bottom: 5px;
+  width: 100%;
+  background: rgb(240, 240, 240);
+  cursor: pointer;
+  box-shadow: 0px 0px 4px $secondaryColor;
+  &:hover {
+    transform: scale(1.05);
+    transition: 0.1s;
+    border: 1px solid $mainColor;
+  }
+
+  .img {
+    width: 15rem;
+    height: 100%;
+    float: left;
+  }
+}
+.details {
+  height: 100%;
+  padding-left: 2%;
+  display: flex;
+  flex-direction: column;
+}
+.title {
+  flex: 2;
+  color: black;
+}
+.description {
+  flex: 5;
+  margin-right: 1rem;
+  color: $secondaryColor;
+  h5 {
+    font-size: 1.2rem;
+  }
+}
+.date {
+  flex: 1;
+  color: $mainColor;
+}
+
+//? GRID
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(25rem, 30rem));
+  grid-column-gap: 2rem;
+  grid-row-gap: 2rem;
+  justify-content: center;
+}
+.grid-image {
+  height: 45rem;
+  img {
+    width: 100%;
+    height: 100%;
+    border-radius: 1rem;
+  }
+}
+.grid-details {
+  height: 5rem;
+  color: rgb(31, 31, 31);
+  font-size: 1.5rem;
+  display: flex;
+  background-color: white;
+}
+.grid-movie {
+  box-shadow: 0px 0px 4px $secondaryColor;
+  border-radius: 1rem;
+  &:hover {
+    transform: scale(1.05);
+    transition: 0.1s;
+    border: 2px solid $mainColor;
+  }
+}
+
+.grid-title {
+  flex: 2;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  padding-left: 0.5rem;
+}
+.grid-rate {
+  flex: 1;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.rate {
+  height: 70%;
+  width: 70%;
+  border: 1.5px solid $mainColor;
+  font-size: 2rem;
+  display: flex;
+  color: $mainColor;
+  justify-content: center;
+  align-items: center;
+}

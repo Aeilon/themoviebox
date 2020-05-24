@@ -1,0 +1,20 @@
+{
+  "Popular": "Popular",
+  "Upcoming": "Upcoming",
+  "Top Rated": "Top Rated",
+  "Genre": "Genre",
+  "All": "All",
+  "Search": "Search...",
+  "Rating":"Rating based on {vote_count} reviews",
+  "Duration":"Duration:",
+  "No Results": "No Results",
+  "Show More": "Show More",
+  "button-show":"SHOW MORE",
+  "Budget": "Budget:",
+  "Popularity": "Popularity:",
+  "Original Language":"Original Language:",
+  "Original Title":"Original Title:",
+  "Query": "Query...",
+  "Year":"Year...",
+  "Error":"Something went wrong!"
+}

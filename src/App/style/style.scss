@@ -1,0 +1,12 @@
+$mainColor: rgb(255, 0, 121);
+$secondaryColor: rgb(128, 129, 138);
+.wrap {
+  width: 75%;
+  margin: auto;
+  margin-top: 5vh;
+}
+@import "../../components/Header/style";
+@import "../../components/TabBar/style";
+@import "../../components/DisplayMovie/style";
+@import "../../pages/MovieDetails/style";
+@import "../../components/Header/Nav/style";
