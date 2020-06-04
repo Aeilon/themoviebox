@@ -15,6 +15,7 @@ const TabBar = () => {
     { name: "Top Rated", link: "top_rated" },
   ];
   const [displayType, setDisplayType] = useContext(ViewContext);
+
   const params = useParams();
   const [isMobile] = useContext(ResolutionContext);
   const endpoint = params.endpoint?.toLowerCase();
