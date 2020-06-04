@@ -17,7 +17,11 @@ const DisplayMovie = ({ movie, onClick }) => {
   //! FLEX
   if (displayType === "flex")
     return (
-      <div className="movie" onClick={() => onClick(id)}>
+      <div
+        data-testid="view-test"
+        className="movie"
+        onClick={() => onClick(id)}
+      >
         <div className="img">
           <img
             width="150px"
@@ -45,7 +49,11 @@ const DisplayMovie = ({ movie, onClick }) => {
     );
   //? GRID
   return (
-    <div className="grid-movie" onClick={() => onClick(id)}>
+    <div
+      data-testid="view-test"
+      className="grid-movie"
+      onClick={() => onClick(id)}
+    >
       <div className="grid-image">
         <img
           src={

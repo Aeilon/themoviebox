@@ -2,7 +2,7 @@ import { useEffect, useState, useContext } from "react";
 import axios from "axios";
 import api from "../utilites/api";
 import { LanguageContext } from "../context/LanguageContext";
-export default function useQuickSearch(query) {
+const useQuickSearch = (query) => {
   const [movies, setMovies] = useState([]);
   const [language] = useContext(LanguageContext);
   useEffect(() => {
@@ -16,7 +16,7 @@ export default function useQuickSearch(query) {
       const URL = `search/movie?`;
       api
         .get(URL, {
-          params: { query, page: 1},
+          params: { query, page: 1 },
           cancelToken: new axios.CancelToken((c) => (cancel = c)),
         })
 
@@ -32,4 +32,5 @@ export default function useQuickSearch(query) {
   }, [query, language]);
 
   return { movies };
-}
+};
+export default useQuickSearch;

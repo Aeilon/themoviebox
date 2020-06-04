@@ -70,6 +70,7 @@ const Nav = () => {
           <>
             <input
               type="text"
+              data-testid="click-input"
               placeholder={intl.formatMessage({
                 id: "Search",
                 defaultMessage: "Search...",
@@ -152,7 +153,11 @@ const Nav = () => {
               <input
                 type="text"
                 value={query}
-                placeholder={intl.formatMessage({ id: "Search" })}
+                data-testid="quick-search-input"
+                placeholder={intl.formatMessage({
+                  id: "Search",
+                  defaultMessage: "Search",
+                })}
                 onChange={updateQuery}
                 ref={inputRef}
               />
