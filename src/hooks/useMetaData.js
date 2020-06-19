@@ -1,7 +1,7 @@
 import { useEffect, useState, useContext } from "react";
-import api from "../utilites/api";
-import {SelectedMovieContext} from '../context/SelectedMovieContext';
-import {LanguageContext} from '../context/LanguageContext';
+import api from "../api/api";
+import { SelectedMovieContext } from "../context/SelectedMovieContext";
+import { LanguageContext } from "../context/LanguageContext";
 
 const useMetaData = () => {
   const [data, setData] = useState({});
@@ -9,7 +9,7 @@ const useMetaData = () => {
   const [selectedMovieID] = useContext(SelectedMovieContext);
   const [language] = useContext(LanguageContext);
   useEffect(() => {
-    if(!selectedMovieID) return;
+    if (!selectedMovieID) return;
     const URL = `movie/${selectedMovieID}?`;
     api
       .get(URL)
@@ -20,7 +20,7 @@ const useMetaData = () => {
       .catch((e) => {
         console.error(e);
       });
-  }, [selectedMovieID,language]);
+  }, [selectedMovieID, language]);
 
   return { data, genres };
 };

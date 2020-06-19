@@ -1,5 +1,6 @@
 import React, { useContext } from "react";
 import { ViewContext } from "../../context/ViewContext";
+import noImage from "../../images/noImage.jpg";
 const DisplayMovie = ({ movie, onClick }) => {
   const {
     id,
@@ -13,7 +14,10 @@ const DisplayMovie = ({ movie, onClick }) => {
 
   const shortTitle = (title, length = 45) =>
     title.length >= length ? title.slice(0, length) + "..." : title;
-
+  const getImage = (link) => {
+    if (!poster_path) return noImage;
+    return `${link}${poster_path}`;
+  };
   //! FLEX
   if (displayType === "flex")
     return (
@@ -26,11 +30,7 @@ const DisplayMovie = ({ movie, onClick }) => {
           <img
             width="150px"
             height="auto"
-            src={
-              !poster_path
-                ? "https://us.123rf.com/450wm/pavelstasevich/pavelstasevich1811/pavelstasevich181101032/112815935-no-image-available-icon-flat-vector-illustration.jpg?ver=6"
-                : `https://image.tmdb.org/t/p/w500${poster_path}`
-            }
+            src={getImage("https://image.tmdb.org/t/p/w500")}
             alt={title}
           />
         </div>
@@ -56,11 +56,7 @@ const DisplayMovie = ({ movie, onClick }) => {
     >
       <div className="grid-image">
         <img
-          src={
-            !poster_path
-              ? "https://us.123rf.com/450wm/pavelstasevich/pavelstasevich1811/pavelstasevich181101032/112815935-no-image-available-icon-flat-vector-illustration.jpg?ver=6"
-              : `https://image.tmdb.org/t/p/w300_and_h450_bestv2${poster_path}`
-          }
+          src={getImage("https://image.tmdb.org/t/p/w300_and_h450_bestv2")}
           alt={title}
         />
       </div>

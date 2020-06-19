@@ -12,8 +12,23 @@ import { IntlProvider } from "react-intl";
 import DisplayMovie from "../DisplayMovie";
 import validMovie from "../../__mocks__/validMovie.json";
 describe("TabBar", () => {
+  beforeAll(() => {
+    Object.defineProperty(window, "matchMedia", {
+      writable: true,
+      value: jest.fn().mockImplementation((query) => ({
+        matches: false,
+        media: query,
+        onchange: null,
+        addListener: jest.fn(),
+        removeListener: jest.fn(),
+        addEventListener: jest.fn(),
+        removeEventListener: jest.fn(),
+        dispatchEvent: jest.fn(),
+      })),
+    });
+  });
   const tree = (
-    <ResolutionProvider>
+    <ResolutionProvider isMobile={true}>
       <ViewProvider>
         <LanguageProvider>
           <SelectedMovieProvider>
