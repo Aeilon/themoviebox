@@ -2,7 +2,7 @@ import React, { createContext, useState, useEffect } from "react";
 
 export const SelectedMovieContext = createContext();
 
-const SelectedMovieProvider = (props) => {
+const SelectedMovieProvider = ({ children }) => {
   const [selectedMovieID, setSelectedMovieID] = useState(null);
 
   useEffect(() => {
@@ -13,7 +13,7 @@ const SelectedMovieProvider = (props) => {
     <SelectedMovieContext.Provider
       value={[selectedMovieID, setSelectedMovieID]}
     >
-      {props.children}
+      {children}
     </SelectedMovieContext.Provider>
   );
 };

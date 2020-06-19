@@ -1,6 +1,6 @@
 import { useEffect, useState, useContext } from "react";
 import axios from "axios";
-import api from "../utilites/api";
+import api from "../api/api";
 import { LanguageContext } from "../context/LanguageContext";
 
 const useMovieEndpoint = (page, params) => {

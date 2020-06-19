@@ -35,15 +35,20 @@
     height: 5rem;
     border: 1px solid white;
     color: rgb(128, 129, 138);
+    border-bottom: 1px solid rgb(128, 129, 138);
+    background-color: white;
     outline-color: rgb(255, 0, 121);
     cursor: pointer;
+    option{
+      color:rgb(128, 129, 138);
+    }
     &:active {
       outline: none;
     }
   }
 }
 
-.change-viev {
+.change-view {
   flex: 1;
   height: 5vh;
   display: flex;
@@ -103,16 +108,29 @@
   .tabs{
     height: 100%;
     flex-direction: column;
-    justify-content: space-around;
+    justify-content: flex-start;
     button {
+      margin-top:2rem;
       margin-right: 0;
       font-size: 1.5rem;
-      height: 10vh;
+      height: 5vh;
     }
   
     select {
-      height: 10vh;
+      margin-top: 2rem;
+      height: 5vh;
       background: white;
+    }
+  }
+}
+//? TABLET
+@media (max-width:1025px) and (orientation: landscape){
+  .tabs{
+    button{
+      height: 3rem;
+    }
+    select{
+      height: 3rem;
     }
   }
 }

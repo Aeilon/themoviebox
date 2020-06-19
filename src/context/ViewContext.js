@@ -2,7 +2,7 @@ import React, { createContext, useState, useEffect } from "react";
 
 export const ViewContext = createContext();
 
-const ViewProvider = (props) => {
+const ViewProvider = ({ children }) => {
   const [displayType, setDisplayType] = useState(
     localStorage.getItem("display-type") || "grid"
   );
@@ -13,7 +13,7 @@ const ViewProvider = (props) => {
 
   return (
     <ViewContext.Provider value={[displayType, setDisplayType]}>
-      {props.children}
+      {children}
     </ViewContext.Provider>
   );
 };

@@ -1,5 +1,5 @@
 import { useEffect, useState, useContext } from "react";
-import api from "../utilites/api";
+import api from "../api/api";
 import { LanguageContext } from "../context/LanguageContext";
 
 const useMovieDetails = (params) => {
