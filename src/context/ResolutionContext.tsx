@@ -1,8 +1,14 @@
 import React, { createContext, useState, useEffect } from "react";
 
-export const ResolutionContext = createContext();
+type Context = [boolean];
 
-const ResolutionProvider = ({ children }) => {
+export const ResolutionContext = createContext<Context>(null!);
+
+interface Props {
+  children: React.ReactNode;
+}
+
+const ResolutionProvider: React.FC<Props> = ({ children }) => {
   const [isMobile, toggleMobile] = useState(
     window.matchMedia("(max-width:1025px)").matches
   );

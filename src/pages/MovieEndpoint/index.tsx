@@ -6,12 +6,16 @@ import useMovieEndpoint from "../../hooks/useMovieEndpoint";
 import TabBar from "../../components/TabBar";
 import { SelectedMovieContext } from "../../context/SelectedMovieContext";
 import { ViewContext } from "../../context/ViewContext";
-import {ResolutionContext} from '../../context/ResolutionContext';
+import { ResolutionContext } from "../../context/ResolutionContext";
 
-const MovieEndpoint = () => {
-  const params = useParams();
+interface Params {
+  endpoint: string;
+}
+
+const MovieEndpoint: React.FC = () => {
+  const params = useParams<Params>();
   const [page, setPage] = useState(1);
-  // eslint-disable-next-line 
+  // eslint-disable-next-line
   const [selectedMovieID, setSelectedMovieID] = useContext(
     SelectedMovieContext
   );
@@ -20,21 +24,21 @@ const MovieEndpoint = () => {
   const { movies, hasMore, loading, error } = useMovieEndpoint(page, params);
   const lastMovieElementRef = useInfinityScroll(setPage, hasMore, loading);
 
-  const getMovieID = (id) => {
+  const getMovieID = (id: number): void => {
     setSelectedMovieID(id);
-    window.scrollTo(0,0);
+    window.scrollTo(0, 0);
   };
   useEffect(() => {
-    if(movies.length <21)
-    setSelectedMovieID(movies[0]?.id);
+    if (movies.length < 21) setSelectedMovieID(movies[0]?.id);
     // eslint-disable-next-line
-  },[movies])
+  }, [movies]);
+
   useEffect(() => {
     setPage(1);
   }, [params]);
   return (
     <div>
-      {isMobile? null : <TabBar/>}
+      {isMobile ? null : <TabBar />}
       <div className={displayType === "grid" ? "wrap grid" : "wrap"}>
         {movies.map((movie, index) => {
           const { id } = movie;

@@ -1,7 +1,16 @@
-import { useRef, useCallback } from "react";
+import React, { useRef, useCallback } from "react";
 
-const useInfinityScroll = (setPage, hasMore, loading) => {
-  const observer = useRef();
+const useInfinityScroll = (
+  setPage: React.Dispatch<React.SetStateAction<number>>,
+  hasMore: boolean,
+  loading: boolean
+):
+  | string
+  | null
+  | ((instance: HTMLDivElement | null) => void)
+  | undefined
+  | React.RefObject<HTMLDivElement> => {
+  const observer = useRef<IntersectionObserver>();
   const lastMovieElementRef = useCallback(
     (node) => {
       if (loading) return;

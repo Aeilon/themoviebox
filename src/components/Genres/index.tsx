@@ -4,23 +4,28 @@ import api from "../../api/api";
 import { LanguageContext } from "../../context/LanguageContext";
 import { FormattedMessage } from "react-intl";
 
-const Genres = () => {
-  const params = useParams();
+interface Params {
+  genre: string;
+}
+
+const Genres: React.FC = () => {
+  const params = useParams<Params>();
   const [genres, setGenres] = useState([]);
   // eslint-disable-next-line
   const [loading, setLoading] = useState(false);
   const [language] = useContext(LanguageContext);
 
-  const capitalizeFirstLetter = (word) =>
+  const capitalizeFirstLetter = (word: string): string =>
     word?.charAt(0).toUpperCase() + word?.toLowerCase().slice(1);
 
   const styledSelect = params.genre
     ? { color: "rgb(255, 0, 121)", borderBottom: "1px solid rgb(255, 0, 121)" }
-    : null;
-  const styledOption = (equal) =>
+    : null!;
+
+  const styledOption = (equal: string) =>
     capitalizeFirstLetter(params.genre) === capitalizeFirstLetter(equal)
       ? { color: "rgb(255, 0, 121)" }
-      : null;
+      : null!;
 
   const getGenres = () => {
     setLoading(true);

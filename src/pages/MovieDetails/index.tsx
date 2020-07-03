@@ -2,10 +2,26 @@ import React, { useContext, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import useMovieDetails from "../../hooks/useMovieDetails";
 import { SelectedMovieContext } from "../../context/SelectedMovieContext";
-import {FormattedMessage} from 'react-intl';
+import { FormattedMessage } from "react-intl";
 
-const MovieDetails = () => {
-  const params = useParams();
+interface Movie {
+  poster_path?: string;
+  title?: string;
+  overview?: string;
+  popularity?: number;
+  tagline?: string;
+  budget?: number;
+  original_language?: string;
+  release_date?: string;
+  original_title?: string;
+}
+
+interface Params {
+  id: string;
+}
+
+const MovieDetails: React.FC = () => {
+  const params = useParams<Params>();
   const { data } = useMovieDetails(params);
   // eslint-disable-next-line
   const [selectedMovieID, setSelectedMovieID] = useContext(
@@ -20,8 +36,9 @@ const MovieDetails = () => {
     budget,
     original_language,
     release_date,
-    original_title
+    original_title,
   } = data;
+
   useEffect(() => {
     setSelectedMovieID(params.id);
     // eslint-disable-next-line
@@ -43,17 +60,34 @@ const MovieDetails = () => {
           <h1>{title}</h1>
           <h2>{tagline}</h2>
           <h4>{overview}</h4>
-          <h3><FormattedMessage id="Popularity" defaultMessage="Popularity:"/> {popularity}</h3>
+          <h3>
+            <FormattedMessage id="Popularity" defaultMessage="Popularity:" />{" "}
+            {popularity}
+          </h3>
           <h3>
             <FormattedMessage id="Budget" defaultMessage="Budget:" />{" "}
-            {new Intl.NumberFormat("en-US", {
-              style: "currency",
-              currency: "USD",
-            }).format(budget)}
+            {budget
+              ? new Intl.NumberFormat("en-US", {
+                  style: "currency",
+                  currency: "USD",
+                }).format(budget)
+              : null}
           </h3>
 
-          <h3><FormattedMessage id="Original Language" defaultMessage="Original Language:" /> {original_language}</h3>
-          <h3><FormattedMessage id="Original Title" defaultMessage="Original Title:" /> {original_title}</h3>
+          <h3>
+            <FormattedMessage
+              id="Original Language"
+              defaultMessage="Original Language:"
+            />{" "}
+            {original_language}
+          </h3>
+          <h3>
+            <FormattedMessage
+              id="Original Title"
+              defaultMessage="Original Title:"
+            />{" "}
+            {original_title}
+          </h3>
           <h2>{release_date}</h2>
         </div>
       </div>

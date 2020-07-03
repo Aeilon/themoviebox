@@ -1,12 +1,21 @@
 import { useEffect, useState, useContext } from "react";
-import axios from "axios";
+import axios, { Canceler } from "axios";
 import api from "../api/api";
 import { LanguageContext } from "../context/LanguageContext";
 
-const useMovieSearch = (query, page, year) => {
+interface Movie {
+  id: number;
+  title: string;
+  poster_path: string;
+  release_date: string;
+  overview: string;
+  vote_average: number;
+}
+
+const useMovieSearch = (query: string, page: number, year: string) => {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(false);
-  const [movies, setMovies] = useState([]);
+  const [movies, setMovies] = useState<Movie[]>([]);
   const [hasMore, setHasMore] = useState(false);
   const [language] = useContext(LanguageContext);
 
@@ -18,7 +27,7 @@ const useMovieSearch = (query, page, year) => {
     if (query.length > 2) {
       setLoading(true);
       setError(false);
-      let cancel;
+      let cancel: Canceler;
       const URL = `search/movie?`;
       api
         .get(URL, {

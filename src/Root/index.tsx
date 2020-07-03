@@ -4,7 +4,8 @@ import SelectedMovieProvider from "../context/SelectedMovieContext";
 import ViewProvider from "../context/ViewContext";
 import ResolutionProvider from "../context/ResolutionContext";
 import LanguageProvider from "../context/LanguageContext";
-const Root = () => {
+
+const Root: React.FC = () => {
   return (
     <LanguageProvider>
       <SelectedMovieProvider>

@@ -5,7 +5,7 @@ import flex from "../../../images/flex.png";
 import React, { useContext } from "react";
 import { ViewContext } from "../../../context/ViewContext";
 
-const ChangeView = () => {
+const ChangeView: React.FC = () => {
   const [displayType, setDisplayType] = useContext(ViewContext);
   return (
     <div className="change-view">

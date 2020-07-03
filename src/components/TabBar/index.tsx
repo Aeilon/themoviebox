@@ -4,22 +4,27 @@ import Genres from "../Genres";
 import { ResolutionContext } from "../../context/ResolutionContext";
 import { FormattedMessage } from "react-intl";
 import ChangeView from "./ChangeView";
-const TabBar = () => {
+
+interface Params {
+  endpoint: string;
+}
+
+const TabBar: React.FC = () => {
   const endpoints = [
     { name: "Popular", link: "popular" },
     { name: "Upcoming", link: "upcoming" },
     { name: "Top Rated", link: "top_rated" },
   ];
-  const styledButton = (link) =>
+  const styledButton = (link: string) =>
     link === endpoint
       ? {
           color: "rgb(255, 0, 121)",
           borderBottom: "1px solid rgb(255, 0, 121)",
         }
-      : null;
-  const changeLocation = (link) => (window.location.href = `/${link}`);
+      : null!;
+  const changeLocation = (link: string) => (window.location.href = `/${link}`);
 
-  const params = useParams();
+  const params = useParams<Params>();
   const [isMobile] = useContext(ResolutionContext);
   const endpoint = params.endpoint?.toLowerCase();
   return (

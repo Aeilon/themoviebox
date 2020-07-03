@@ -1,11 +1,30 @@
 import React, { useContext } from "react";
 import { SelectedMovieContext } from "../../../context/SelectedMovieContext";
 import { FormattedMessage } from "react-intl";
-const MovieMetaData = ({ metaData, genres }) => {
+
+interface Genre {
+  name: string;
+}
+
+interface Movie {
+  title?: string;
+  vote_average?: number;
+  vote_count?: number;
+  runtime?: number;
+  backdrop_path?: string;
+}
+
+interface Props {
+  metaData: Movie;
+  genres: Genre[];
+}
+
+const MovieMetaData: React.FC<Props> = ({ metaData, genres }) => {
   const { title, vote_average, vote_count, runtime } = metaData;
   const [selectedMovieID] = useContext(SelectedMovieContext);
 
-  const timeConvert = (n) => {
+  const timeConvert = (n?: number): string | undefined => {
+    if (!n) return;
     const hours = Math.floor(n / 60);
     const minutes = n % 60;
     return `${hours}h ${minutes}m`;
@@ -14,7 +33,7 @@ const MovieMetaData = ({ metaData, genres }) => {
   return (
     <div
       className="movie-metadata"
-      style={!selectedMovieID ? { display: "none" } : null}
+      style={!selectedMovieID ? { display: "none" } : null!}
     >
       <div className="metadata">
         <div className="movie-title">
