@@ -8,8 +8,11 @@ import { SelectedMovieContext } from "../../context/SelectedMovieContext";
 import { ViewContext } from "../../context/ViewContext";
 import { ResolutionContext } from "../../context/ResolutionContext";
 
-const MovieList = () => {
-  const params = useParams();
+interface Params {
+  genre: string;
+}
+const MovieList: React.FC = () => {
+  const params = useParams<Params>();
   const [page, setPage] = useState(1);
   // eslint-disable-next-line
   const [selectedMovieID, setSelectedMovieID] = useContext(
@@ -19,13 +22,16 @@ const MovieList = () => {
   const [displayType] = useContext(ViewContext);
   const { movies, hasMore, loading, error } = useMovieList(page, params);
   const lastMovieElementRef = useInfinityScroll(setPage, hasMore, loading);
-  const getMovieID = (id) => {
+
+  const getMovieID = (id: number): void => {
     setSelectedMovieID(id);
     window.scrollTo(0, 0);
   };
+
   useEffect(() => {
     setPage(1);
   }, [params]);
+
   useEffect(() => {
     if (movies.length < 21) setSelectedMovieID(movies[0]?.id);
     // eslint-disable-next-line

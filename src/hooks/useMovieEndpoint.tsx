@@ -1,12 +1,25 @@
 import { useEffect, useState, useContext } from "react";
-import axios from "axios";
+import axios, { Canceler } from "axios";
 import api from "../api/api";
 import { LanguageContext } from "../context/LanguageContext";
 
-const useMovieEndpoint = (page, params) => {
+interface Params {
+  endpoint: string;
+}
+
+interface Movie {
+  id: number;
+  title: string;
+  poster_path: string;
+  release_date: string;
+  overview: string;
+  vote_average: number;
+}
+
+const useMovieEndpoint = (page: number, params: Params) => {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(false);
-  const [movies, setMovies] = useState([]);
+  const [movies, setMovies] = useState<Movie[]>([]);
   const [hasMore, setHasMore] = useState(false);
   const [language] = useContext(LanguageContext);
   const endpoints = ["popular", "upcoming", "top_rated"];
@@ -19,7 +32,7 @@ const useMovieEndpoint = (page, params) => {
   useEffect(() => {
     setLoading(true);
     setError(false);
-    let cancel;
+    let cancel: Canceler;
     const validEndpoint = endpoints.filter((e) => e === endpoint);
     if (validEndpoint.length === 0) window.location.href = "/";
 
@@ -45,8 +58,6 @@ const useMovieEndpoint = (page, params) => {
     return () => cancel();
     // eslint-disable-next-line
   }, [page, language]);
-
   return { loading, error, movies, hasMore };
 };
-
 export default useMovieEndpoint;

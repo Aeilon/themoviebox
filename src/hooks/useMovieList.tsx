@@ -1,15 +1,34 @@
 import { useEffect, useState, useContext } from "react";
-import axios from "axios";
+import axios, { Canceler } from "axios";
 import api from "../api/api";
 import { LanguageContext } from "../context/LanguageContext";
 
-const useMovieList = (page, params) => {
+interface Params {
+  genre: string;
+}
+
+interface Genre {
+  id: number;
+  name: string;
+}
+
+interface Movie {
+  id: number;
+  title: string;
+  poster_path: string;
+  release_date: string;
+  overview: string;
+  vote_average: number;
+}
+
+const useMovieList = (page: number, params: Params) => {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(false);
-  const [movies, setMovies] = useState([]);
+  const [movies, setMovies] = useState<Movie[]>([]);
   const [hasMore, setHasMore] = useState(false);
   const [language] = useContext(LanguageContext);
-  const capitalizeFirstLetter = (word) => {
+
+  const capitalizeFirstLetter = (word: string): string => {
     if (word === "Science Fiction") return word;
     if (word === "TV Movie") return word;
     if (word === "Sci-Fi") return word;
@@ -26,28 +45,28 @@ const useMovieList = (page, params) => {
   useEffect(() => {
     setLoading(true);
     setError(false);
-    let cancel;
-    const URL = `genre/movie/list?`;
-    const URL2 = `discover/movie?`;
+    let cancel: Canceler;
+    const genreURL = `genre/movie/list?`;
+    const discoverURL = `discover/movie?`;
 
-    api.get(URL).then((response) => {
+    api.get(genreURL).then((response) => {
       let { genres } = response.data;
-      const genre = genres.filter((genre) => validParam === genre.name);
+      const genre = genres.filter((genre: Genre) => validParam === genre.name);
       if (genre.length === 0 && validParam !== "All") {
         return (window.location.href = "/movies/All");
       }
 
       const genreID = genre[0]?.id;
       api
-        .get(URL2, {
+        .get(discoverURL, {
           params: { page, with_genres: genreID },
           cancelToken: new axios.CancelToken((c) => (cancel = c)),
         })
 
         .then((res) => {
-          setMovies((prevMovies) => {
-            return [...new Set([...prevMovies, ...res.data.results])];
-          });
+          setMovies((prevMovies) => [
+            ...new Set([...prevMovies, ...res.data.results]),
+          ]);
           setHasMore(res.data.results.length > 0);
           setLoading(false);
         })

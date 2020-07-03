@@ -3,7 +3,7 @@
   height: 22.5rem;
   margin-bottom: 5px;
   width: 100%;
-  background: rgb(240, 240, 240);
+  background: whitesmoke;
   cursor: pointer;
   box-shadow: 0px 0px 4px $secondaryColor;
   &:hover {
@@ -58,14 +58,14 @@
   }
 }
 .grid-details {
-  height: 5rem;
-  color: rgb(31, 31, 31);
+  height: 8rem;
+  color: #545353;
   font-size: 1.5rem;
   display: flex;
-  background-color: white;
+  background-color: whitesmoke;
 }
 .grid-movie {
-  box-shadow: 0px 0px 4px $secondaryColor;
+  box-shadow: 0 0 4px $secondaryColor;
   border-radius: 1rem;
   &:hover {
     transform: scale(1.05);
@@ -79,7 +79,7 @@
   height: 100%;
   display: flex;
   align-items: center;
-  padding-left: 0.5rem;
+  padding-left: 1.5rem;
 }
 .grid-rate {
   flex: 1;

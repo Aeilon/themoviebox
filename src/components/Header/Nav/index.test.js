@@ -2,7 +2,7 @@ import React from "react";
 import { render, fireEvent, waitFor } from "@testing-library/react";
 import "@testing-library/jest-dom/extend-expect";
 import { act } from "react-dom/test-utils";
-import Nav from "../Nav";
+import Nav from "./index";
 import TabBar from "../../TabBar";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import SelectedMovieProvider from "../../../context/SelectedMovieContext";

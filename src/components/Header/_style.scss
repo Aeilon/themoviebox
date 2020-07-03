@@ -108,7 +108,7 @@ header {
   }
 }
 .quick-search {
-  width: 60%;
+  width: 20%;
   height: 80vh;
   border-radius: 1rem;
   border:1px solid white;
@@ -126,13 +126,16 @@ header {
   border-radius: 1rem;
   input[type="text"] {
     outline: none;
+    padding: 0 1rem;
     border-radius: 0.5rem;
     font-weight: 500;
     font-style: italic;
+    height: 3rem;
+    border:1px solid black;
   }
 }
 .quick-search-grid {
-  flex: 5;
+  flex: 1;
   display: grid;
   grid-template-columns: repeat(2, minmax(10rem, 15rem));
   grid-template-rows: repeat(3, minmax(15rem, 20rem));
@@ -156,6 +159,12 @@ header {
       border-radius: 1rem;
     }
   }
+}
+.results{
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 @media (max-width:1602px){
   .quick-search-grid {
@@ -269,7 +278,7 @@ header {
     grid-template-rows: repeat(3, minmax(10rem, 15rem));
   }
 }
-@media (orientation: landscape){
+@media (orientation: landscape) and (max-width: 1025px){
   .quick-search-grid {
     grid-template-columns: repeat(6, minmax(5rem, 10rem));
     grid-template-rows: repeat(1, minmax(10rem, 15rem));

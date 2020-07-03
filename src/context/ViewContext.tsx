@@ -1,8 +1,14 @@
 import React, { createContext, useState, useEffect } from "react";
 
-export const ViewContext = createContext();
+type Context = [string, React.Dispatch<React.SetStateAction<string>>];
 
-const ViewProvider = ({ children }) => {
+export const ViewContext = createContext<Context>(null!);
+
+interface Props {
+  children: React.ReactNode;
+}
+
+const ViewProvider: React.FC<Props> = ({ children }) => {
   const [displayType, setDisplayType] = useState(
     localStorage.getItem("display-type") || "grid"
   );

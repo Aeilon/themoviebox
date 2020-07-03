@@ -3,7 +3,7 @@ import { render, fireEvent, waitFor } from "@testing-library/react";
 import "@testing-library/jest-dom/extend-expect";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import { act } from "react-dom/test-utils";
-import TabBar from "../TabBar";
+import TabBar from "./index";
 import SelectedMovieProvider from "../../context/SelectedMovieContext";
 import ResolutionProvider from "../../context/ResolutionContext";
 import LanguageProvider from "../../context/LanguageContext";

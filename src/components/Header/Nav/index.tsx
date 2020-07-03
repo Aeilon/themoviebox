@@ -10,7 +10,7 @@ import DesktopNav from "./DesktopNav";
 import MobileMenu from "./MobileMenu";
 import QuickSearch from "./QuickSearch";
 
-const Nav = () => {
+const Nav: React.FC = () => {
   // eslint-disable-next-line
   const [selectedMovieID, setSelectedMovieID] = useContext(
     SelectedMovieContext
@@ -26,7 +26,7 @@ const Nav = () => {
   const [displayType, setDisplayType] = useContext(ViewContext);
   const [language, setLanguage] = useContext(LanguageContext);
 
-  const updateQuery = (e) => {
+  const updateQuery = (e: React.ChangeEvent<HTMLInputElement>): void => {
     setQuery(e.target.value);
   };
 
@@ -37,6 +37,7 @@ const Nav = () => {
 
   useEffect(() => {
     if (quickSearch) {
+      // @ts-ignore
       inputRef.current.focus();
     }
   }, [quickSearch]);

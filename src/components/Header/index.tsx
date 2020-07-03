@@ -4,14 +4,14 @@ import MovieMetaData from "./MovieMetaData";
 import useMetaData from "../../hooks/useMetaData";
 import { SelectedMovieContext } from "../../context/SelectedMovieContext";
 import header from "../../images/header.jpg";
-const Header = () => {
+
+const Header: React.FC = () => {
   const { data, genres } = useMetaData();
   const { backdrop_path } = data;
   const [selectedMovieID] = useContext(SelectedMovieContext);
-  const getImage = (path) => {
-    if (!path) return;
 
-    if (!selectedMovieID) return { backgroundImage: `url(${header})` };
+  const getImage = (path?: string) => {
+    if (!selectedMovieID || !path) return { backgroundImage: `url(${header})` };
     return {
       backgroundImage: `url(https://image.tmdb.org/t/p/original${path})`,
     };

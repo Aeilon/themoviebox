@@ -1,9 +1,8 @@
 $mainColor: rgb(255, 0, 121);
-$secondaryColor: rgb(128, 129, 138);
+$secondaryColor: rgb(131, 133, 138);
 .wrap {
   width: 75%;
-  margin: auto;
-  margin-top: 5vh;
+  margin: 5vh auto auto auto;
 }
 @import "../../components/Header/style";
 @import "../../components/TabBar/style";

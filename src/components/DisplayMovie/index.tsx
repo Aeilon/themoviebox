@@ -1,7 +1,22 @@
 import React, { useContext } from "react";
 import { ViewContext } from "../../context/ViewContext";
 import noImage from "../../images/noImage.jpg";
-const DisplayMovie = ({ movie, onClick }) => {
+
+interface Movie {
+  id: number;
+  title: string;
+  poster_path: string;
+  release_date: string;
+  overview: string;
+  vote_average: number;
+}
+
+interface Props {
+  movie: Movie;
+  onClick: (id: number) => void;
+}
+
+const DisplayMovie: React.FC<Props> = ({ movie, onClick }) => {
   const {
     id,
     title,
@@ -12,9 +27,10 @@ const DisplayMovie = ({ movie, onClick }) => {
   } = movie;
   const [displayType] = useContext(ViewContext);
 
-  const shortTitle = (title, length = 45) =>
+  const shortTitle = (title: string, length = 45): string =>
     title.length >= length ? title.slice(0, length) + "..." : title;
-  const getImage = (link) => {
+
+  const getImage = (link: string): string => {
     if (!poster_path) return noImage;
     return `${link}${poster_path}`;
   };

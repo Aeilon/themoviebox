@@ -1,8 +1,9 @@
 import { useEffect, useState, useContext } from "react";
-import axios from "axios";
+import axios, { Canceler } from "axios";
 import api from "../api/api";
 import { LanguageContext } from "../context/LanguageContext";
-const useQuickSearch = (query) => {
+
+const useQuickSearch = (query: string) => {
   const [movies, setMovies] = useState([]);
   const [language] = useContext(LanguageContext);
   useEffect(() => {
@@ -11,7 +12,7 @@ const useQuickSearch = (query) => {
 
   useEffect(() => {
     if (query.length >= 3) {
-      let cancel;
+      let cancel: Canceler;
 
       const URL = `search/movie?`;
       api

@@ -1,6 +1,16 @@
 import React from "react";
 
-const MobileNav = ({ menu, toggleMenu, toggleQuickSearch }) => {
+interface Props {
+  menu: boolean;
+  toggleMenu: React.Dispatch<React.SetStateAction<boolean>>;
+  toggleQuickSearch: React.Dispatch<React.SetStateAction<boolean>>;
+}
+
+const MobileNav: React.FC<Props> = ({
+  menu,
+  toggleMenu,
+  toggleQuickSearch,
+}) => {
   return (
     <>
       <img

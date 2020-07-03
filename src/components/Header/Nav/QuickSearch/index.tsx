@@ -1,9 +1,28 @@
 import { Link } from "react-router-dom";
-import { FormattedMessage } from "react-intl";
+import { FormattedMessage, IntlShape } from "react-intl";
 import React, { useContext } from "react";
 import { ResolutionContext } from "../../../../context/ResolutionContext";
 
-const QuickSearch = ({
+interface Movie {
+  title: string;
+  id: number;
+  poster_path: string;
+}
+
+interface Props {
+  movies: Movie[];
+  query: string;
+  setSelectedMovieID: React.Dispatch<
+    React.SetStateAction<number | string | undefined>
+  >;
+  toggleQuickSearch: React.Dispatch<React.SetStateAction<boolean>>;
+  toggleMenu: React.Dispatch<React.SetStateAction<boolean>>;
+  inputRef: React.RefObject<HTMLInputElement>;
+  intl: IntlShape;
+  updateQuery: (e: React.ChangeEvent<HTMLInputElement>) => void;
+}
+
+const QuickSearch: React.FC<Props> = ({
   movies,
   query,
   setSelectedMovieID,
@@ -18,13 +37,13 @@ const QuickSearch = ({
     <div className="blur">
       <div
         className="quick-search"
-        onBlur={(e) => {
+        onBlur={(e: any) => {
           if (!e.currentTarget.contains(e.relatedTarget)) {
             document.body.style.overflow = "visible";
             toggleQuickSearch(false);
           }
         }}
-        tabIndex="0"
+        tabIndex={0}
       >
         {isMobile ? (
           <img
@@ -84,34 +103,35 @@ const QuickSearch = ({
             );
           })}
         </div>
-        {movies.length > 1 && query.length > 2 && (
-          <Link
-            onClick={() => {
-              document.body.style.overflow = "visible";
-              toggleQuickSearch(false);
-              setSelectedMovieID(null);
-            }}
-            style={{ color: "white", textDecoration: "none" }}
-            to={{
-              pathname: `/search`,
-              state: {
-                query,
-              },
-            }}
-          >
-            <>
-              <hr />
-              <h2>
-                <FormattedMessage id="Show More" defaultMessage="Show More" />
-              </h2>
-            </>
-          </Link>
-        )}
-        {query.length > 2 && movies.length === 0 && (
-          <h2>
-            <FormattedMessage id="No Results" defaultMessage="No Results" />
-          </h2>
-        )}
+        <div className="results">
+          {movies.length > 1 && query.length > 2 && (
+            <Link
+              onClick={() => {
+                document.body.style.overflow = "visible";
+                toggleQuickSearch(false);
+                setSelectedMovieID(null!);
+              }}
+              style={{ color: "white", textDecoration: "none" }}
+              to={{
+                pathname: `/search`,
+                state: {
+                  query,
+                },
+              }}
+            >
+              <>
+                <h2>
+                  <FormattedMessage id="Show More" defaultMessage="Show More" />
+                </h2>
+              </>
+            </Link>
+          )}
+          {query.length > 2 && movies.length === 0 && (
+            <h2>
+              <FormattedMessage id="No Results" defaultMessage="No Results" />
+            </h2>
+          )}
+        </div>
       </div>
     </div>
   );

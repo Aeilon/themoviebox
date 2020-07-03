@@ -5,10 +5,14 @@ import useMovieSearch from "../../hooks/useMovieSearch";
 import useInfinityScroll from "../../hooks/useInfinityScroll";
 import { ViewContext } from "../../context/ViewContext";
 import { SelectedMovieContext } from "../../context/SelectedMovieContext";
-import {useIntl} from 'react-intl';
+import { useIntl } from "react-intl";
 
-const SearchPage = () => {
-  const location = useLocation();
+interface LocationState {
+  query: string;
+}
+
+const SearchPage: React.FC = () => {
+  const location = useLocation<LocationState>();
   const [query, setQuery] = useState(
     location.state !== undefined ? location.state.query : ""
   );
@@ -23,16 +27,16 @@ const SearchPage = () => {
   const { movies, hasMore, loading, error } = useMovieSearch(query, page, year);
   const lastMovieElementRef = useInfinityScroll(setPage, hasMore, loading);
 
-  const getMovieID = (id) => {
+  const getMovieID = (id: number): void => {
     setSelectedMovieID(id);
     window.scrollTo(0, 0);
   };
 
-  const handleQuery = (e) => {
+  const handleQuery = (e: React.ChangeEvent<HTMLInputElement>) => {
     setQuery(e.target.value);
     setPage(1);
   };
-  const handleYear = (e) => {
+  const handleYear = (e: React.ChangeEvent<HTMLInputElement>) => {
     setYear(e.target.value);
     setPage(1);
   };
@@ -46,13 +50,19 @@ const SearchPage = () => {
       <div className="search-inputs">
         <input
           type="text"
-          placeholder={intl.formatMessage({ id: "Query",defaultMessage:"Query..." })}
+          placeholder={intl.formatMessage({
+            id: "Query",
+            defaultMessage: "Query...",
+          })}
           value={query}
           onChange={handleQuery}
         />
         <input
           type="text"
-          placeholder={intl.formatMessage({ id: "Year",defaultMessage:"Year..." })}
+          placeholder={intl.formatMessage({
+            id: "Year",
+            defaultMessage: "Year...",
+          })}
           value={year}
           inputMode="tel"
           onChange={handleYear}

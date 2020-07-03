@@ -1,7 +1,6 @@
 .wrap {
   width: 75%;
-  margin: auto;
-  margin-top: 5vh;
+  margin: 5vh auto auto auto;
 }
 
 header {
@@ -33,7 +32,7 @@ header {
   height: 80%;
   background-color: rgba(8, 1, 43, 0.75);
   flex: 1;
-  border: 1px solid #80818a;
+  border: 1px solid #83858a;
   display: flex;
   justify-content: space-evenly;
   flex-direction: column;
@@ -116,7 +115,7 @@ header {
 }
 
 .quick-search {
-  width: 60%;
+  width: 20%;
   height: 80vh;
   border-radius: 1rem;
   border: 1px solid white;
@@ -136,13 +135,16 @@ header {
 }
 .quick-search-input input[type=text] {
   outline: none;
+  padding: 0 1rem;
   border-radius: 0.5rem;
   font-weight: 500;
   font-style: italic;
+  height: 3rem;
+  border: 1px solid black;
 }
 
 .quick-search-grid {
-  flex: 5;
+  flex: 1;
   display: grid;
   grid-template-columns: repeat(2, minmax(10rem, 15rem));
   grid-template-rows: repeat(3, minmax(15rem, 20rem));
@@ -165,6 +167,13 @@ header {
   height: 100%;
   width: 100%;
   border-radius: 1rem;
+}
+
+.results {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 @media (max-width: 1602px) {
@@ -274,7 +283,7 @@ header {
     grid-template-rows: repeat(3, minmax(10rem, 15rem));
   }
 }
-@media (orientation: landscape) {
+@media (orientation: landscape) and (max-width: 1025px) {
   .quick-search-grid {
     grid-template-columns: repeat(6, minmax(5rem, 10rem));
     grid-template-rows: repeat(1, minmax(10rem, 15rem));
@@ -291,8 +300,7 @@ header {
 .TabBar {
   width: 75%;
   height: 5vh;
-  margin: auto;
-  margin-top: 5vh;
+  margin: 5vh auto auto auto;
   display: flex;
 }
 
@@ -352,11 +360,10 @@ header {
 }
 
 .search-inputs {
-  width: 40%;
-  margin: 0 auto;
+  width: 100%;
   height: 5vh;
   display: flex;
-  justify-content: space-evenly;
+  justify-content: center;
   align-items: center;
   margin-top: 2vh;
 }
@@ -369,7 +376,13 @@ header {
   font-style: italic;
   font-size: 2rem;
   padding-top: 0.5rem;
-  padding-left: 1rem;
+  padding-left: 1.5rem;
+}
+.search-inputs input[type=text]:first-child {
+  margin-right: 2rem;
+}
+.search-inputs input[type=text]:last-child {
+  margin-left: 2rem;
 }
 .search-inputs input[type=text]:focus {
   border-bottom: 1px solid #ff0079;
@@ -389,10 +402,16 @@ header {
   .search-inputs input[type=text]:hover {
     border: 1px solid #ff0079;
   }
+  .search-inputs input[type=text]:first-child {
+    margin-right: 0;
+  }
+  .search-inputs input[type=text]:last-child {
+    margin-left: 0;
+  }
 
   .TabBar {
     width: 100%;
-    height: 95vh;
+    height: 65vh;
     margin: 0 auto;
     display: block;
   }
@@ -407,28 +426,34 @@ header {
     margin-right: 0;
     font-size: 1.5rem;
     height: 5vh;
+    border: none;
+    font-weight: bold;
   }
   .tabs select {
     margin-top: 2rem;
     height: 5vh;
     background: white;
+    border: none;
+    font-weight: bold;
   }
 }
 @media (max-width: 1025px) and (orientation: landscape) {
   .tabs button {
     height: 3rem;
+    border: none;
   }
   .tabs select {
     height: 3rem;
+    border: none;
   }
 }
 .movie {
   height: 22.5rem;
   margin-bottom: 5px;
   width: 100%;
-  background: #f0f0f0;
+  background: whitesmoke;
   cursor: pointer;
-  box-shadow: 0px 0px 4px #80818a;
+  box-shadow: 0px 0px 4px #83858a;
 }
 .movie:hover {
   transform: scale(1.05);
@@ -456,7 +481,7 @@ header {
 .description {
   flex: 5;
   margin-right: 1rem;
-  color: #80818a;
+  color: #83858a;
 }
 .description h5 {
   font-size: 1.2rem;
@@ -485,15 +510,15 @@ header {
 }
 
 .grid-details {
-  height: 5rem;
-  color: #1f1f1f;
+  height: 8rem;
+  color: #545353;
   font-size: 1.5rem;
   display: flex;
-  background-color: white;
+  background-color: whitesmoke;
 }
 
 .grid-movie {
-  box-shadow: 0px 0px 4px #80818a;
+  box-shadow: 0 0 4px #83858a;
   border-radius: 1rem;
 }
 .grid-movie:hover {
@@ -507,7 +532,7 @@ header {
   height: 100%;
   display: flex;
   align-items: center;
-  padding-left: 0.5rem;
+  padding-left: 1.5rem;
 }
 
 .grid-rate {
@@ -561,7 +586,7 @@ header {
 }
 .details-data h4 {
   font-size: 1.5rem;
-  color: #80818a;
+  color: #83858a;
   font-weight: 400;
   font-style: italic;
 }
@@ -591,7 +616,7 @@ header {
   }
   .details-data h4 {
     font-size: 1rem;
-    color: #80818a;
+    color: #83858a;
     font-weight: 400;
     font-style: italic;
   }
@@ -624,7 +649,7 @@ header {
   }
   .details-data h4 {
     font-size: 1.2rem;
-    color: #80818a;
+    color: #83858a;
     font-weight: 400;
     font-style: italic;
   }
@@ -696,24 +721,26 @@ nav {
   top: 15vh;
   width: 50%;
   height: 84vh;
-  border: 1px solid white;
-  border-radius: 1rem;
-  background-color: rgba(255, 0, 121, 0.8);
+  border-radius: 1rem 0 0 1rem;
+  background-color: white;
   z-index: 1;
+  box-shadow: -7px -1px 29px -1px rgba(0, 0, 0, 0.75);
 }
 
 @media (max-width: 1025px) {
   .languages {
     display: flex;
-    align-items: flex-start;
-    justify-content: flex-start;
-    width: 80%;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 20vh;
+    border-radius: 1rem;
+    background: whitesmoke;
   }
   .languages img {
     height: 48px;
     width: 48px;
     filter: grayscale(100%);
-    opacity: 0.8;
   }
 
   .mobile-menu {

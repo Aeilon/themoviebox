@@ -1,7 +1,7 @@
 import React from "react";
-import {FormattedMessage} from 'react-intl';
+import { FormattedMessage } from "react-intl";
 
-const ErrorPage = () => {
+const ErrorPage: React.FC = () => {
   return (
     <div
       style={{
@@ -11,7 +11,9 @@ const ErrorPage = () => {
       }}
       className="wrap"
     >
-      <h1><FormattedMessage id="Error" defaultMessage="Something went wrong!" /></h1>
+      <h1>
+        <FormattedMessage id="Error" defaultMessage="Something went wrong!" />
+      </h1>
     </div>
   );
 };
