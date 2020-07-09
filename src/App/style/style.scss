@@ -4,8 +4,11 @@ $secondaryColor: rgb(131, 133, 138);
   width: 75%;
   margin: 5vh auto auto auto;
 }
+
 @import "../../components/Header/style";
 @import "../../components/TabBar/style";
 @import "../../components/DisplayMovie/style";
 @import "../../pages/MovieDetails/style";
 @import "../../components/Header/Nav/style";
+@import "../../components/ImageLoading/style";
+@import "../../components/Loading/style";

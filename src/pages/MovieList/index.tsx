@@ -7,6 +7,7 @@ import TabBar from "../../components/TabBar";
 import { SelectedMovieContext } from "../../context/SelectedMovieContext";
 import { ViewContext } from "../../context/ViewContext";
 import { ResolutionContext } from "../../context/ResolutionContext";
+import Loading from "../../components/Loading";
 
 interface Params {
   genre: string;
@@ -54,10 +55,9 @@ const MovieList: React.FC = () => {
             </div>
           );
         })}
-
-        <div>{loading && "Loading..."}</div>
-        <div>{error && "Error"}</div>
       </div>
+      {loading && <Loading />}
+      <div>{error && "Error"}</div>
     </div>
   );
 };

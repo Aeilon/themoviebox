@@ -38,13 +38,19 @@
     background-color: white;
     outline-color: rgb(255, 0, 121);
     cursor: pointer;
+    margin-bottom: 0.75rem;
+
     option{
       color:rgb(128, 129, 138);
     }
     &:active {
       outline: none;
     }
-  }
+    &:hover {
+      color: rgb(255, 0, 121);
+      border-bottom: 1px solid rgb(255, 0, 121);
+    }
+    }
 }
 
 .change-view {
