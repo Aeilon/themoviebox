@@ -1,8 +1,10 @@
-import React, { useContext, useEffect } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import useMovieDetails from "../../hooks/useMovieDetails";
 import { SelectedMovieContext } from "../../context/SelectedMovieContext";
 import { FormattedMessage } from "react-intl";
+import ImageLoading from "../../components/ImageLoading";
+import noImage from "../../images/noImage.jpg";
 
 interface Movie {
   poster_path?: string;
@@ -27,6 +29,10 @@ const MovieDetails: React.FC = () => {
   const [selectedMovieID, setSelectedMovieID] = useContext(
     SelectedMovieContext
   );
+  const [isImageLoaded, toggleImageLoaded] = useState(false);
+
+  const handleOnLoad = () => toggleImageLoaded(true);
+
   const {
     poster_path,
     title,
@@ -39,6 +45,11 @@ const MovieDetails: React.FC = () => {
     original_title,
   } = data;
 
+  const getImage = (link: string): string => {
+    if (!poster_path) return noImage;
+    return `${link}${poster_path}`;
+  };
+
   useEffect(() => {
     setSelectedMovieID(params.id);
     // eslint-disable-next-line
@@ -48,14 +59,14 @@ const MovieDetails: React.FC = () => {
       <div className="details-wrap">
         <div className="details-img">
           <img
-            src={
-              !poster_path
-                ? "https://us.123rf.com/450wm/pavelstasevich/pavelstasevich1811/pavelstasevich181101032/112815935-no-image-available-icon-flat-vector-illustration.jpg?ver=6"
-                : `https://image.tmdb.org/t/p/w500${poster_path}`
-            }
+            style={isImageLoaded ? {} : { display: "none" }}
+            src={getImage("https://image.tmdb.org/t/p/w500")}
             alt={title}
+            onLoad={() => handleOnLoad()}
           />
+          {!isImageLoaded && <ImageLoading />}
         </div>
+
         <div className="details-data">
           <h1>{title}</h1>
           <h2>{tagline}</h2>

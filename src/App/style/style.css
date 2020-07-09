@@ -338,12 +338,17 @@ header {
   background-color: white;
   outline-color: #ff0079;
   cursor: pointer;
+  margin-bottom: 0.75rem;
 }
 .tabs select option {
   color: #80818a;
 }
 .tabs select:active {
   outline: none;
+}
+.tabs select:hover {
+  color: #ff0079;
+  border-bottom: 1px solid #ff0079;
 }
 
 .change-view {
@@ -464,6 +469,9 @@ header {
   width: 15rem;
   height: 100%;
   float: left;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .details {
@@ -502,6 +510,9 @@ header {
 
 .grid-image {
   height: 45rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 .grid-image img {
   width: 100%;
@@ -562,6 +573,9 @@ header {
 
 .details-img {
   flex: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 .details-img img {
   width: 100%;
@@ -791,6 +805,77 @@ nav {
     top: 9vh;
     width: 50%;
     height: 90vh;
+  }
+}
+.loader {
+  z-index: 10;
+  border: 8px solid whitesmoke;
+  border-top: 8px solid #ff0079;
+  border-radius: 50%;
+  width: 60px;
+  height: 60px;
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+.loading-container {
+  display: flex;
+  justify-content: center;
+  margin-top: 1rem;
+}
+
+.loading {
+  height: 4rem;
+  display: flex;
+  align-items: center;
+}
+
+.obj {
+  width: 0.6rem;
+  height: 4rem;
+  background: #ff0079;
+  margin: 0 0.3rem;
+  border-radius: 1rem;
+  animation: loading 0.4s infinite;
+}
+.obj:nth-child(2) {
+  animation-delay: 0.05s;
+}
+.obj:nth-child(3) {
+  animation-delay: 0.1s;
+}
+.obj:nth-child(4) {
+  animation-delay: 0.15s;
+}
+.obj:nth-child(5) {
+  animation-delay: 0.2s;
+}
+.obj:nth-child(6) {
+  animation-delay: 0.25s;
+}
+.obj:nth-child(7) {
+  animation-delay: 0.3s;
+}
+.obj:nth-child(8) {
+  animation-delay: 0.35s;
+}
+
+@keyframes loading {
+  0% {
+    height: 0;
+  }
+  50% {
+    height: 4rem;
+  }
+  100% {
+    height: 0;
   }
 }
 

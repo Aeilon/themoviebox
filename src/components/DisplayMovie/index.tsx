@@ -1,6 +1,7 @@
-import React, { useContext } from "react";
+import React, { useContext, useState } from "react";
 import { ViewContext } from "../../context/ViewContext";
 import noImage from "../../images/noImage.jpg";
+import ImageLoading from "../ImageLoading";
 
 interface Movie {
   id: number;
@@ -26,6 +27,9 @@ const DisplayMovie: React.FC<Props> = ({ movie, onClick }) => {
     vote_average,
   } = movie;
   const [displayType] = useContext(ViewContext);
+  const [isImageLoaded, toggleImageLoaded] = useState(false);
+
+  const handleOnLoad = () => toggleImageLoaded(true);
 
   const shortTitle = (title: string, length = 45): string =>
     title.length >= length ? title.slice(0, length) + "..." : title;
@@ -44,11 +48,14 @@ const DisplayMovie: React.FC<Props> = ({ movie, onClick }) => {
       >
         <div className="img">
           <img
+            style={isImageLoaded ? {} : { display: "none" }}
             width="150px"
             height="auto"
             src={getImage("https://image.tmdb.org/t/p/w500")}
             alt={title}
+            onLoad={() => handleOnLoad()}
           />
+          {!isImageLoaded && <ImageLoading />}
         </div>
         <div className="details">
           <div className="title">
@@ -73,8 +80,11 @@ const DisplayMovie: React.FC<Props> = ({ movie, onClick }) => {
       <div className="grid-image">
         <img
           src={getImage("https://image.tmdb.org/t/p/w300_and_h450_bestv2")}
+          style={isImageLoaded ? {} : { display: "none" }}
           alt={title}
+          onLoad={() => handleOnLoad()}
         />
+        {!isImageLoaded && <ImageLoading />}
       </div>
       <div className="grid-details">
         <div className="grid-title">
