@@ -2,6 +2,9 @@ import React, { useContext, useState } from "react";
 import { ViewContext } from "../../context/ViewContext";
 import noImage from "../../images/noImage.jpg";
 import ImageLoading from "../ImageLoading";
+import { ResolutionContext } from "../../context/ResolutionContext";
+import styled from "styled-components";
+import { FormattedMessage } from "react-intl";
 
 interface Movie {
   id: number;
@@ -17,6 +20,15 @@ interface Props {
   onClick: (id: number) => void;
 }
 
+interface StyledImage {
+  isImageLoaded: boolean;
+}
+
+const StyledImage = styled.img`
+  display: ${({ isImageLoaded }: StyledImage) =>
+    isImageLoaded ? "block" : "none"};
+`;
+
 const DisplayMovie: React.FC<Props> = ({ movie, onClick }) => {
   const {
     id,
@@ -28,6 +40,7 @@ const DisplayMovie: React.FC<Props> = ({ movie, onClick }) => {
   } = movie;
   const [displayType] = useContext(ViewContext);
   const [isImageLoaded, toggleImageLoaded] = useState(false);
+  const [isMobile] = useContext(ResolutionContext);
 
   const handleOnLoad = () => toggleImageLoaded(true);
 
@@ -38,6 +51,17 @@ const DisplayMovie: React.FC<Props> = ({ movie, onClick }) => {
     if (!poster_path) return noImage;
     return `${link}${poster_path}`;
   };
+
+  const getDescription = (description: string): JSX.Element | string => {
+    if (description) return description;
+    return (
+      <FormattedMessage
+        id="Description"
+        defaultMessage="Description not available."
+      />
+    );
+  };
+
   //! FLEX
   if (displayType === "flex")
     return (
@@ -47,11 +71,15 @@ const DisplayMovie: React.FC<Props> = ({ movie, onClick }) => {
         onClick={() => onClick(id)}
       >
         <div className="img">
-          <img
-            style={isImageLoaded ? {} : { display: "none" }}
+          <StyledImage
+            isImageLoaded={isImageLoaded}
             width="150px"
             height="auto"
-            src={getImage("https://image.tmdb.org/t/p/w500")}
+            src={getImage(
+              isMobile
+                ? "https://image.tmdb.org/t/p/w185"
+                : "https://image.tmdb.org/t/p/w342"
+            )}
             alt={title}
             onLoad={() => handleOnLoad()}
           />
@@ -62,7 +90,7 @@ const DisplayMovie: React.FC<Props> = ({ movie, onClick }) => {
             <h1>{title}</h1>
           </div>
           <div className="description">
-            <h5>{overview}</h5>
+            <h5>{getDescription(overview)}</h5>
           </div>
           <div className="date">
             <h3>{release_date}</h3>
@@ -78,9 +106,13 @@ const DisplayMovie: React.FC<Props> = ({ movie, onClick }) => {
       onClick={() => onClick(id)}
     >
       <div className="grid-image">
-        <img
-          src={getImage("https://image.tmdb.org/t/p/w300_and_h450_bestv2")}
-          style={isImageLoaded ? {} : { display: "none" }}
+        <StyledImage
+          src={getImage(
+            isMobile
+              ? "https://image.tmdb.org/t/p/w185"
+              : "https://image.tmdb.org/t/p/w342"
+          )}
+          isImageLoaded={isImageLoaded}
           alt={title}
           onLoad={() => handleOnLoad()}
         />

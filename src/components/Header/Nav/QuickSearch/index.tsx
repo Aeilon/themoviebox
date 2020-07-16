@@ -2,6 +2,12 @@ import { Link } from "react-router-dom";
 import { FormattedMessage, IntlShape } from "react-intl";
 import React, { useContext } from "react";
 import { ResolutionContext } from "../../../../context/ResolutionContext";
+import styled from "styled-components";
+
+const StyledLink = styled(Link)`
+  color: white;
+  text-decoration: none;
+`;
 
 interface Movie {
   title: string;
@@ -76,12 +82,11 @@ const QuickSearch: React.FC<Props> = ({
             const { title, id, poster_path } = movie;
             return (
               <div className="quick-search-movie" key={id}>
-                <Link
+                <StyledLink
                   onClick={() => {
                     document.body.style.overflow = "visible";
                     toggleQuickSearch(false);
                   }}
-                  style={{ color: "white", textDecoration: "none" }}
                   key={id}
                   to={{
                     pathname: `/movie/${id}`,
@@ -98,20 +103,19 @@ const QuickSearch: React.FC<Props> = ({
                     }
                     alt={title}
                   />
-                </Link>
+                </StyledLink>
               </div>
             );
           })}
         </div>
         <div className="results">
           {movies.length > 1 && query.length > 2 && (
-            <Link
+            <StyledLink
               onClick={() => {
                 document.body.style.overflow = "visible";
                 toggleQuickSearch(false);
                 setSelectedMovieID(null!);
               }}
-              style={{ color: "white", textDecoration: "none" }}
               to={{
                 pathname: `/search`,
                 state: {
@@ -124,7 +128,7 @@ const QuickSearch: React.FC<Props> = ({
                   <FormattedMessage id="Show More" defaultMessage="Show More" />
                 </h2>
               </>
-            </Link>
+            </StyledLink>
           )}
           {query.length > 2 && movies.length === 0 && (
             <h2>

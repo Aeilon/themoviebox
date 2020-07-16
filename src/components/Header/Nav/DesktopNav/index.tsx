@@ -2,6 +2,33 @@ import USA from "../../../../images/usa.png";
 import Poland from "../../../../images/poland.png";
 import React from "react";
 import { IntlShape } from "react-intl";
+import styled from "styled-components";
+
+interface Flag {
+  language: string;
+}
+
+const PLFlag = styled.img`
+  height: 70%;
+  width: auto;
+  cursor: pointer;
+  filter: ${({ language }: Flag) =>
+    language === "pl" ? "grayscale(0)" : "grayscale(100)"};
+  &:hover {
+    filter: grayscale(0);
+  }
+`;
+
+const USAFlag = styled.img`
+  height: 70%;
+  width: auto;
+  cursor: pointer;
+  filter: ${({ language }: Flag) =>
+    language === "en" ? "grayscale(0)" : "grayscale(100)"};
+  &:hover {
+    filter: grayscale(0);
+  }
+`;
 
 interface Props {
   intl: IntlShape;
@@ -16,6 +43,9 @@ const DesktopNav: React.FC<Props> = ({
   setLanguage,
   toggleQuickSearch,
 }) => {
+  const toggleLanguage = (language: string): void => {
+    setLanguage(language);
+  };
   return (
     <>
       <input
@@ -30,17 +60,17 @@ const DesktopNav: React.FC<Props> = ({
           toggleQuickSearch(true);
         }}
       />
-      <img
+      <USAFlag
         src={USA}
         alt="USA"
-        onClick={() => setLanguage("en")}
-        style={language === "en" ? { filter: "grayscale(0)" } : null!}
+        language={language}
+        onClick={() => toggleLanguage("en")}
       />
-      <img
+      <PLFlag
         src={Poland}
         alt="Poland"
-        onClick={() => setLanguage("pl")}
-        style={language === "pl" ? { filter: "grayscale(0)" } : null!}
+        onClick={() => toggleLanguage("pl")}
+        language={language}
       />
     </>
   );

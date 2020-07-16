@@ -13,18 +13,11 @@
   button {
     margin-right: 5rem;
     font-size: 1.5rem;
-    color: rgb(128, 129, 138);
     background-color: white;
     height: 5vh;
     width: 15rem;
-    border: none;
-    border-bottom: 1px solid rgb(128, 129, 138);
-    outline-color: rgb(255, 0, 121);
+    outline-color: $mainColor;
     cursor: pointer;
-    &:hover {
-      color: rgb(255, 0, 121);
-      border-bottom: 1px solid rgb(255, 0, 121);
-    }
     &:active {
       outline: none;
     }
@@ -32,23 +25,12 @@
 
   select {
     height: 5rem;
-    border: 1px solid white;
-    color: rgb(128, 129, 138);
-    border-bottom: 1px solid rgb(128, 129, 138);
     background-color: white;
-    outline-color: rgb(255, 0, 121);
+    outline-color: $mainColor;
     cursor: pointer;
     margin-bottom: 0.75rem;
-
-    option{
-      color:rgb(128, 129, 138);
-    }
     &:active {
       outline: none;
-    }
-    &:hover {
-      color: rgb(255, 0, 121);
-      border-bottom: 1px solid rgb(255, 0, 121);
     }
     }
 }
@@ -59,11 +41,6 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  img {
-    width: 3.2rem;
-    height: 3.2rem;
-    cursor: pointer;
-  }
 }
 .search-inputs{
   width: 100%;
@@ -74,7 +51,7 @@
   margin-top: 2vh;
   input[type="text"]{
     border:none;
-    border-bottom: 1px solid  rgb(128, 129, 138);
+    border-bottom: 1px solid  $secondaryColor;
     outline: none;
     height: 110%;
     font-weight: 500;
@@ -89,7 +66,7 @@
       margin-left: 2rem;
     }
     &:focus{
-      border-bottom: 1px solid  rgb(255, 0, 121);
+      border-bottom: 1px solid  $mainColor;
     }
   }
 }
@@ -101,11 +78,11 @@
     height: 5rem;
     width: 100%;
     input[type="text"]{
-      border: 1px solid  rgb(128, 129, 138);
+      border: 1px solid  $secondaryColor;
       margin-top: 1rem;
       font-size: 1.5rem;
       &:hover{
-        border: 1px solid  rgb(255, 0, 121);
+        border: 1px solid  $mainColor;
       }
       &:first-child{
         margin-right: 0;

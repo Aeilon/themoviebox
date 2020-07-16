@@ -25,7 +25,6 @@ header {
   height: 18vh;
   margin-bottom: 1vh;
   text-overflow: ellipsis;
-  display: flex;
 }
 
 .rating {
@@ -314,41 +313,24 @@ header {
 .tabs button {
   margin-right: 5rem;
   font-size: 1.5rem;
-  color: #80818a;
   background-color: white;
   height: 5vh;
   width: 15rem;
-  border: none;
-  border-bottom: 1px solid #80818a;
   outline-color: #ff0079;
   cursor: pointer;
-}
-.tabs button:hover {
-  color: #ff0079;
-  border-bottom: 1px solid #ff0079;
 }
 .tabs button:active {
   outline: none;
 }
 .tabs select {
   height: 5rem;
-  border: 1px solid white;
-  color: #80818a;
-  border-bottom: 1px solid #80818a;
   background-color: white;
   outline-color: #ff0079;
   cursor: pointer;
   margin-bottom: 0.75rem;
 }
-.tabs select option {
-  color: #80818a;
-}
 .tabs select:active {
   outline: none;
-}
-.tabs select:hover {
-  color: #ff0079;
-  border-bottom: 1px solid #ff0079;
 }
 
 .change-view {
@@ -357,11 +339,6 @@ header {
   display: flex;
   justify-content: center;
   align-items: center;
-}
-.change-view img {
-  width: 3.2rem;
-  height: 3.2rem;
-  cursor: pointer;
 }
 
 .search-inputs {
@@ -374,7 +351,7 @@ header {
 }
 .search-inputs input[type=text] {
   border: none;
-  border-bottom: 1px solid #80818a;
+  border-bottom: 1px solid #83858a;
   outline: none;
   height: 110%;
   font-weight: 500;
@@ -400,7 +377,7 @@ header {
     width: 100%;
   }
   .search-inputs input[type=text] {
-    border: 1px solid #80818a;
+    border: 1px solid #83858a;
     margin-top: 1rem;
     font-size: 1.5rem;
   }
@@ -577,11 +554,6 @@ header {
   justify-content: center;
   align-items: center;
 }
-.details-img img {
-  width: 100%;
-  height: auto;
-  border: 1px solid #ff0079;
-}
 
 .details-data {
   flex: 2;
@@ -712,15 +684,6 @@ nav {
   border-radius: 0.5rem;
   border: none;
 }
-.menu img {
-  height: 70%;
-  width: auto;
-  cursor: pointer;
-  filter: grayscale(100%);
-}
-.menu img:hover {
-  filter: grayscale(0);
-}
 .menu input[type=text] {
   margin-right: 2rem;
   border-radius: 1rem;
@@ -750,11 +713,6 @@ nav {
     height: 20vh;
     border-radius: 1rem;
     background: whitesmoke;
-  }
-  .languages img {
-    height: 48px;
-    width: 48px;
-    filter: grayscale(100%);
   }
 
   .mobile-menu {
@@ -828,7 +786,7 @@ nav {
 .loading-container {
   display: flex;
   justify-content: center;
-  margin-top: 1rem;
+  margin-top: 3rem;
 }
 
 .loading {

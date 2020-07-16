@@ -3,10 +3,57 @@ import { useParams } from "react-router-dom";
 import api from "../../api/api";
 import { LanguageContext } from "../../context/LanguageContext";
 import { FormattedMessage } from "react-intl";
+import styled from "styled-components";
 
 interface Params {
   genre: string;
 }
+
+interface StyledSelect {
+  params: Params;
+  theme: {
+    colors: {
+      mainColor: string;
+      secondaryColor: string;
+    };
+  };
+}
+
+interface StyledOption {
+  params: Params;
+  capitalizeFirstLetter: (word: string) => string;
+  arg: string;
+  theme: {
+    colors: {
+      mainColor: string;
+      secondaryColor: string;
+    };
+  };
+}
+
+const StyledSelect = styled.select`
+  color: ${({ theme, params }: StyledSelect) =>
+    params.genre ? theme.colors.mainColor : theme.colors.secondaryColor};
+
+  border: 1px solid white;
+
+  border-bottom: ${({ theme, params }: StyledSelect) =>
+    params.genre
+      ? `1px solid ${theme.colors.mainColor}`
+      : `1px solid ${theme.colors.secondaryColor}`};
+
+  &:hover {
+    color: ${({ theme }) => theme.colors.mainColor};
+    border-bottom: ${({ theme }) => theme.colors.maincolor};
+  }
+`;
+
+const StyledOption = styled.option`
+  color: ${({ theme, params, capitalizeFirstLetter, arg }: StyledOption) =>
+    capitalizeFirstLetter(params.genre) === capitalizeFirstLetter(arg)
+      ? theme.colors.mainColor
+      : theme.colors.secondaryColor};
+`;
 
 const Genres: React.FC = () => {
   const params = useParams<Params>();
@@ -17,15 +64,6 @@ const Genres: React.FC = () => {
 
   const capitalizeFirstLetter = (word: string): string =>
     word?.charAt(0).toUpperCase() + word?.toLowerCase().slice(1);
-
-  const styledSelect = params.genre
-    ? { color: "rgb(255, 0, 121)", borderBottom: "1px solid rgb(255, 0, 121)" }
-    : null!;
-
-  const styledOption = (equal: string) =>
-    capitalizeFirstLetter(params.genre) === capitalizeFirstLetter(equal)
-      ? { color: "rgb(255, 0, 121)" }
-      : null!;
 
   const getGenres = () => {
     setLoading(true);
@@ -52,32 +90,44 @@ const Genres: React.FC = () => {
   }, [language]);
   return (
     <div>
-      <select
+      <StyledSelect
+        params={params}
         value={getSelectValue()}
         onChange={(e) => (window.location.href = `/movies/${e.target.value}`)}
         id="genres"
-        style={styledSelect}
       >
         <FormattedMessage id="Genre" defaultMessage="Genre">
           {(message) => <option disabled>{message}</option>}
         </FormattedMessage>
         <FormattedMessage id="All" defaultMessage="All">
           {(message) => (
-            <option value="All" key="All" style={styledOption("all")}>
+            <StyledOption
+              arg={"all"}
+              capitalizeFirstLetter={capitalizeFirstLetter}
+              params={params}
+              value="All"
+              key="All"
+            >
               {message}
-            </option>
+            </StyledOption>
           )}
         </FormattedMessage>
 
         {genres.map((genre) => {
           const { name } = genre;
           return (
-            <option key={name} style={styledOption(name)} value={name}>
+            <StyledOption
+              key={name}
+              capitalizeFirstLetter={capitalizeFirstLetter}
+              params={params}
+              arg={name}
+              value={name}
+            >
               {name}
-            </option>
+            </StyledOption>
           );
         })}
-      </select>
+      </StyledSelect>
     </div>
   );
 };

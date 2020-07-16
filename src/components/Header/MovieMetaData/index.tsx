@@ -1,6 +1,7 @@
 import React, { useContext } from "react";
 import { SelectedMovieContext } from "../../../context/SelectedMovieContext";
 import { FormattedMessage } from "react-intl";
+import styled from "styled-components";
 
 interface Genre {
   name: string;
@@ -19,6 +20,15 @@ interface Props {
   genres: Genre[];
 }
 
+interface HeaderImage {
+  selectedMovieID?: string | number;
+}
+
+const HeaderImage = styled.div`
+display: ${({ selectedMovieID }: HeaderImage) =>
+  !selectedMovieID ? "none" : "flex"} }
+`;
+
 const MovieMetaData: React.FC<Props> = ({ metaData, genres }) => {
   const { title, vote_average, vote_count, runtime } = metaData;
   const [selectedMovieID] = useContext(SelectedMovieContext);
@@ -31,10 +41,7 @@ const MovieMetaData: React.FC<Props> = ({ metaData, genres }) => {
   };
 
   return (
-    <div
-      className="movie-metadata"
-      style={!selectedMovieID ? { display: "none" } : null!}
-    >
+    <HeaderImage className="movie-metadata" selectedMovieID={selectedMovieID}>
       <div className="metadata">
         <div className="movie-title">
           <span> {title}</span>
@@ -67,7 +74,7 @@ const MovieMetaData: React.FC<Props> = ({ metaData, genres }) => {
           <h2>{vote_average}</h2>
         </div>
       </div>
-    </div>
+    </HeaderImage>
   );
 };
 export default MovieMetaData;

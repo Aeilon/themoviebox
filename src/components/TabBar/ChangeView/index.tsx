@@ -4,21 +4,15 @@ import flexActive from "../../../images/flexActive.png";
 import flex from "../../../images/flex.png";
 import React, { useContext } from "react";
 import { ViewContext } from "../../../context/ViewContext";
+import { GridIcon } from "../ChangeViewIcons";
+import { FlexIcon } from "../ChangeViewIcons";
 
 const ChangeView: React.FC = () => {
   const [displayType, setDisplayType] = useContext(ViewContext);
   return (
     <div className="change-view">
-      <img
-        src={displayType === "grid" ? gridActive : grid}
-        onClick={() => setDisplayType("grid")}
-        alt="grid"
-      />
-      <img
-        src={displayType === "flex" ? flexActive : flex}
-        onClick={() => setDisplayType("flex")}
-        alt="flex"
-      />
+      <GridIcon displayType={displayType} setDisplayType={setDisplayType} />
+      <FlexIcon displayType={displayType} setDisplayType={setDisplayType} />
     </div>
   );
 };

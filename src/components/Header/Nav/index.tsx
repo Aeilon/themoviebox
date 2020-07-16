@@ -19,7 +19,7 @@ const Nav: React.FC = () => {
   const [query, setQuery] = useState("");
   const [quickSearch, toggleQuickSearch] = useState(false);
   const [menu, toggleMenu] = useState(false);
-  const inputRef = useRef(null);
+  const inputRef = useRef<HTMLInputElement>(document.createElement("input"));
   const { movies } = useQuickSearch(query);
   const [isMobile] = useContext(ResolutionContext);
   // eslint-disable-next-line
@@ -37,11 +37,13 @@ const Nav: React.FC = () => {
 
   useEffect(() => {
     if (quickSearch) {
-      // @ts-ignore
       inputRef.current.focus();
     }
   }, [quickSearch]);
-  if (isMobile) setDisplayType("grid");
+
+  useEffect(() => {
+    if (isMobile) setDisplayType("grid");
+  }, [isMobile]);
 
   return (
     <nav>
@@ -68,10 +70,10 @@ const Nav: React.FC = () => {
       </div>
       {menu && (
         <MobileMenu
-          toggleMenu={toggleMenu}
           language={language}
           setLanguage={setLanguage}
-          toggleQuickSearch={toggleQuickSearch}
+          isMobile={isMobile}
+          toggleMenu={toggleMenu}
         />
       )}
       {quickSearch && (
