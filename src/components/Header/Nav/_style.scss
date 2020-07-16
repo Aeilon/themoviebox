@@ -37,15 +37,7 @@ nav {
       border-radius: 0.5rem;
       border: none;
     }
-    img {
-      height: 70%;
-      width: auto;
-      cursor: pointer;
-      filter: grayscale(100%);
-      &:hover{
-        filter:grayscale(0);
-      }
-    }
+
     input[type="text"] {
       margin-right: 2rem;
       border-radius: 1rem;
@@ -76,11 +68,7 @@ nav {
       height: 20vh;
       border-radius: 1rem;
       background: whitesmoke;
-      img{
-        height: 48px;
-        width: 48px;
-        filter: grayscale(100%);
-      }
+
     }
     .mobile-menu{
       width: 27%;

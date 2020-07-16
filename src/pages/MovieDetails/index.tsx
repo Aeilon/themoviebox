@@ -5,18 +5,19 @@ import { SelectedMovieContext } from "../../context/SelectedMovieContext";
 import { FormattedMessage } from "react-intl";
 import ImageLoading from "../../components/ImageLoading";
 import noImage from "../../images/noImage.jpg";
+import styled from "styled-components";
 
-interface Movie {
-  poster_path?: string;
-  title?: string;
-  overview?: string;
-  popularity?: number;
-  tagline?: string;
-  budget?: number;
-  original_language?: string;
-  release_date?: string;
-  original_title?: string;
+interface StyledImage {
+  isImageLoaded: boolean;
 }
+
+const StyledImage = styled.img`
+  width: 100%;
+  height: auto;
+  border: 1px solid ${({ theme }) => theme.colors.mainColor};
+  display: ${({ isImageLoaded }: StyledImage) =>
+    isImageLoaded ? "block" : "none"};
+`;
 
 interface Params {
   id: string;
@@ -50,6 +51,23 @@ const MovieDetails: React.FC = () => {
     return `${link}${poster_path}`;
   };
 
+  const formattedBudget = (budget: number): string => {
+    return new Intl.NumberFormat("en-US", {
+      style: "currency",
+      currency: "USD",
+    }).format(budget);
+  };
+
+  const getDescription = (description?: string): JSX.Element | string => {
+    if (description) return description;
+    return (
+      <FormattedMessage
+        id="Description"
+        defaultMessage="Description not available."
+      />
+    );
+  };
+
   useEffect(() => {
     setSelectedMovieID(params.id);
     // eslint-disable-next-line
@@ -58,10 +76,10 @@ const MovieDetails: React.FC = () => {
     <div className="wrap">
       <div className="details-wrap">
         <div className="details-img">
-          <img
-            style={isImageLoaded ? {} : { display: "none" }}
+          <StyledImage
             src={getImage("https://image.tmdb.org/t/p/w500")}
             alt={title}
+            isImageLoaded={isImageLoaded}
             onLoad={() => handleOnLoad()}
           />
           {!isImageLoaded && <ImageLoading />}
@@ -70,19 +88,14 @@ const MovieDetails: React.FC = () => {
         <div className="details-data">
           <h1>{title}</h1>
           <h2>{tagline}</h2>
-          <h4>{overview}</h4>
+          <h4>{getDescription(overview)}</h4>
           <h3>
             <FormattedMessage id="Popularity" defaultMessage="Popularity:" />{" "}
             {popularity}
           </h3>
           <h3>
             <FormattedMessage id="Budget" defaultMessage="Budget:" />{" "}
-            {budget
-              ? new Intl.NumberFormat("en-US", {
-                  style: "currency",
-                  currency: "USD",
-                }).format(budget)
-              : null}
+            {budget ? formattedBudget(budget) : null}
           </h3>
 
           <h3>
