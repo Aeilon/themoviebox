@@ -1,7 +1,3 @@
-import gridActive from "../../../images/gridActive.png";
-import grid from "../../../images/grid.png";
-import flexActive from "../../../images/flexActive.png";
-import flex from "../../../images/flex.png";
 import React, { useContext } from "react";
 import { ViewContext } from "../../../context/ViewContext";
 import { GridIcon } from "../ChangeViewIcons";
