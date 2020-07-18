@@ -3,6 +3,7 @@ import { FormattedMessage, IntlShape } from "react-intl";
 import React, { useContext } from "react";
 import { ResolutionContext } from "../../../../context/ResolutionContext";
 import styled from "styled-components";
+import { useHistory } from "react-router-dom";
 
 const StyledLink = styled(Link)`
   color: white;
@@ -39,6 +40,16 @@ const QuickSearch: React.FC<Props> = ({
   updateQuery,
 }) => {
   const [isMobile] = useContext(ResolutionContext);
+  const history = useHistory();
+
+  const handleKeyPress = (e: React.KeyboardEvent): void => {
+    if (e.key === "Enter") {
+      history.push("/search", { query });
+      toggleQuickSearch(false);
+      document.body.style.overflow = "visible";
+    }
+  };
+
   return (
     <div className="blur">
       <div
@@ -74,6 +85,7 @@ const QuickSearch: React.FC<Props> = ({
               defaultMessage: "Search",
             })}
             onChange={updateQuery}
+            onKeyUp={handleKeyPress}
             ref={inputRef}
           />
         </div>
