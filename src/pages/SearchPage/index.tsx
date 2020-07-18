@@ -6,6 +6,7 @@ import useInfinityScroll from "../../hooks/useInfinityScroll";
 import { ViewContext } from "../../context/ViewContext";
 import { SelectedMovieContext } from "../../context/SelectedMovieContext";
 import { useIntl } from "react-intl";
+import Loading from "../../components/Loading";
 
 interface LocationState {
   query: string;
@@ -84,7 +85,7 @@ const SearchPage: React.FC = () => {
           );
         })}
 
-        <div>{loading && "Loading..."}</div>
+        <div>{loading && <Loading />}</div>
         <div>{error && "Error"}</div>
       </div>
     </>
