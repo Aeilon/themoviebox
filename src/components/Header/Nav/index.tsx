@@ -9,6 +9,7 @@ import MobileNav from "./MobileNav";
 import DesktopNav from "./DesktopNav";
 import MobileMenu from "./MobileMenu";
 import QuickSearch from "./QuickSearch";
+import ScrollUpButton from "../../ScrollUpButton";
 
 const Nav: React.FC = () => {
   // eslint-disable-next-line
@@ -47,6 +48,7 @@ const Nav: React.FC = () => {
 
   return (
     <nav>
+      <ScrollUpButton menu={menu} quickSearch={quickSearch} />
       <div className="logo">
         <span onClick={() => (window.location.href = "/")}>
           THEMOVIE<b>BOX</b>

@@ -8,13 +8,11 @@ import MovieList from "../pages/MovieList";
 import ErrorPage from "../components/ErrorPage";
 import "./style/style.css";
 import MovieEndpoint from "../pages/MovieEndpoint";
-import ScrollUpButton from "../components/ScrollUpButton";
 
 const App: React.FC = () => {
   return (
     <Router>
       <Header />
-      <ScrollUpButton />
       <Switch>
         <Route path="/" exact component={Homepage} />
         <Route path="/search" exact component={SearchPage} />
